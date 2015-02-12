@@ -1,5 +1,3 @@
-
-
 function displayCohorts(responseCohorts){
 
   console.log(responseCohorts);
@@ -13,3 +11,4 @@ function displayCohorts(responseCohorts){
     cohorts.append(cohortTemplate(context));
   });
 }
+
