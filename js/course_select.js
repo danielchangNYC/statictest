@@ -5,11 +5,11 @@ APP.Multiform = function () {
 };
 
 APP.Multiform.prototype.postUrl = function () {
-  return '/customers/new?cohort_ids[]='+this.cohort_ids;
+  return 'http://localhost:3000/customers/new?cohort_ids[]='+this.cohort_ids;
 }
 
 APP.Multiform.prototype.$el = function () {
-  return $('#cohorts').find('li');
+  return $('#cohorts').find('.cohort');
 };
 
 APP.Multiform.prototype.checkFull = function ($li) {
