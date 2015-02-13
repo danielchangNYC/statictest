@@ -38,7 +38,7 @@ APP.Multiform.prototype.ajaxPushState = function ($div) {
 
   $.ajax({
     url: self.postUrl(),
-    type: 'POST',
+    type: 'GET',
     beforeSend: function (xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
     data: data,
     success: function (response) {
