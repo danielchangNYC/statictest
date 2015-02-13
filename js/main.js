@@ -7,7 +7,7 @@ function displayCohorts(responseCohorts){
 
   $.each(responseCohorts.cohorts, function(_, cohort){
     var context = cohort;
-    context.fullText = cohort.full ? 'Open' : 'Closed';
+    context.fullText = cohort.full ? 'Close' : 'Open';
     cohorts.append(cohortTemplate(context));
   });
 }
