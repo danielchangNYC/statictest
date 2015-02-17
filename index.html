@@ -14,17 +14,18 @@
     <script src="js/vendor/handlebars-v3.0.0.js"></script>
     <script src="js/main.js"></script>
     <script src="js/course_select.js"></script>
+    <script src="js/package_select.js"></script>
   </head>
   <body>
     <div class="container">
-      <div id="cohorts" class="row">
+      <div id="packages" class="row">
       </div>
       <br>
       <a href="#" id="enroll">enroll now!</a>
     </div>
 
     <!-- Cohort Template -->
-    <script id="cohort_template" type="text/x-handlebars-template">
+    <script id="cohort-partial" type="text/x-handlebars-template">
       <div class="col-sm-12 cohort" data-cohort-id="{{id}}" data-cohort-full="{{full}}">
         <h3>{{name}}<h3>
         <strong>Details</strong>
@@ -36,8 +37,9 @@
     </script>
 
     <!-- Req to //Enrollments -->
-    <script src="http://50df9cfc.ngrok.com/api/cohorts.json?callback=displayCohorts"></script>
-  </body>
+    <script src="http://50df9cfc.ngrok.com/api/packages.json?callback=displayPackages">
+    </script>
 
+  </body>
 </html>
 
