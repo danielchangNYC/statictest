@@ -11,12 +11,14 @@ function displayPackages(responsePackages){
       var cohort_div = '<div class="col-sm-12 cohort" data-cohort-id=';
       cohort_div += cohort.id;
       cohort_div += ' data-cohort-full='+cohort.full+'><h3>'+cohort.name+'</h3>';
-      cohort_div += '<p><strong>Details</strong><p><ul><li>Max: ';
-      cohort_div += cohort.max_enrollments;
+      cohort_div += '<p><strong>Details</strong><p><ul>';
+      if (cohort.seats_left < 6) {
+         cohort_div += '<li>Only '+cohort.seats_left+' seats left</li>';
+      };
       cohort_div += '</li><li>'+fullText+'</li></ul></div>';
       cohorts_html += cohort_div;
     });
-    packages.append('<div class="col-sm-12 package" data-package-id='+pack.id+'><h1>'+pack.name+'</h1>'+cohorts_html+'</div>')
+    packages.append('<div class="col-sm-12 package" data-package-id='+pack.id+'><h1>'+pack.name+'</h1><p>'+pack.description+'</p>'+cohorts_html+'</div>')
   });
 }
 
