@@ -39,15 +39,24 @@ APP.Multiform.prototype.addListeners = function ($div) {
   //listener on enroll button
   $('#enroll').click(function (event) {
     event.preventDefault();
-    //clear cohort_ids if multiple ajax posts occur.
-    // this.cohort_ids = [];
+    var packages = [];
     $div.filter('.selected').each(function () {
+      // debugger;
       var sel_cohort_id = $(this).data('cohort-id');
       var sel_package_id = $(this).parent().data('package-id');
+      // packages.push(sel_package_id: cohort_ids);
+
       self.cohort_ids.push(sel_cohort_id);
       self.package_ids.push(sel_package_id);
     });
-    window.location.href='http://localhost:3000/customers/new?cohort_ids[]='+self.cohort_ids+'&package_ids[]='+self.package_ids;
+    // window.location.href='http://localhost:3000/customers/new?cohort_ids[]='+self.cohort_ids+'&package_ids[]='+self.package_ids;
+    // $.ajax({
+    //   data: {
+    //     packages: [
+
+    //     ]
+    //   }
+    // })
   });
 };
 

@@ -14,26 +14,32 @@
     <script src="js/vendor/handlebars-v3.0.0.js"></script>
     <script src="js/main.js"></script>
     <script src="js/course_select.js"></script>
-    <script src="js/package_select.js"></script>
   </head>
   <body>
     <div class="container">
       <div id="packages" class="row">
+
       </div>
-      <br>
       <a href="#" id="enroll">enroll now!</a>
     </div>
 
     <!-- Cohort Template -->
-    <script id="cohort-partial" type="text/x-handlebars-template">
-      <div class="col-sm-12 cohort" data-cohort-id="{{id}}" data-cohort-full="{{full}}">
-        <h3>{{name}}<h3>
-        <strong>Details</strong>
-        <ul>
-          <li>Max: {{max_enrollments}}</li>
-          <li>{{fullText}}</li>
-        </ul>
-      </div>
+    <script id="packageTemplate" type="text/x-handlebars-template">
+        {{#packages}}
+        <div class="col-sm-12 package" data-package-id="{{id}}">
+          <h1>{{name}} - {{price}}</h1>
+          {{#cohorts_by_course}}
+            <h2>{{name}}</h2>
+            {{#cohorts}}
+              <h3>{{name}}</h3>        
+              <ul>
+                <li>Max: {{max_enrollments}}</li>
+                <li>{{full}}</li>
+              </ul>
+            {{/cohorts}}
+          {{/cohorts_by_course}}
+        </div>
+        {{/packages}}
     </script>
 
     <!-- Req to //Enrollments -->
