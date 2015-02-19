@@ -58,6 +58,7 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
     $.ajax({
         url: 'http://50df9cfc.ngrok.com/api/carts',
         type: 'POST',
+        contentType: 'application/json',
         crossDomain: true,
         data: JSON.stringify(dataResponse),
         dataType: 'json',
