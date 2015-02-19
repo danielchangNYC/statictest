@@ -56,15 +56,16 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
     });
     // send dataResponse to //enroll
     $.ajax({
-        url: 'http://5bac69d4.ngrok.com/api/carts',
+        url: 'http://50df9cfc.ngrok.com/api/carts',
         type: 'POST',
-        contentType: 'application/json',
         crossDomain: true,
         data: JSON.stringify(dataResponse),
         dataType: 'json',
         success: function(res){
-          // response expected: {cart_id: }
-          // redirect to this carts/:cart_id/customers/new
+          console.log(res["cart"]["id"]);
+          var cart_id = res["cart"]["id"];
+          // redirect to this window.location redirect customers/new
+          window.location.href='http://localhost:3000/customers/new?cart_id='+cart_id;
         }
       });
   });
