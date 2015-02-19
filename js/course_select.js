@@ -54,10 +54,12 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
 
       packageId = null, cohortId =[];
     });
-
     // send dataResponse to //enroll
     $.ajax({
-        url: 'http://5bac69d4.ngrok.com/api/create_cart'
+        url: 'http://5bac69d4.ngrok.com/api/carts',
+        type: 'POST',
+        contentType: 'application/json',
+        crossDomain: true,
         data: dataResponse,
         dataType: 'json',
         success: function(res){
