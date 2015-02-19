@@ -60,7 +60,7 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
         type: 'POST',
         contentType: 'application/json',
         crossDomain: true,
-        data: dataResponse,
+        data: JSON.stringify(dataResponse),
         dataType: 'json',
         success: function(res){
           // response expected: {cart_id: }
