@@ -35,7 +35,7 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
     var dataResponse = {packages: []};
     var packageId, cohortId;
 
-    // Constructr data response from clicked buttons
+    // Construct data response from clicked buttons
     $selected = $('.selected');
     $selected.each(function(_, selectedEl){
       var selectedEl = $(selectedEl);
@@ -54,7 +54,17 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
 
       packageId = null, cohortId =[];
     });
-    console.log(dataResponse);
+
+    // send dataResponse to //enroll
+    $.ajax({
+        url: 'http://5bac69d4.ngrok.com/api/create_cart'
+        data: dataResponse,
+        dataType: 'json',
+        success: function(res){
+          // response expected: {cart_id: }
+          // redirect to this carts/:cart_id/customers/new
+        }
+      });
   });
 };
 
