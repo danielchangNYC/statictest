@@ -1,69 +1,67 @@
 APP = {};
 
 APP.Multiform = function () {
-  this.cohort_ids = [];
-  this.package_ids = [];
 };
 
 APP.Multiform.prototype.$el = function () {
   return $('#packages').find('.cohort');
 };
 
-APP.Multiform.prototype.checkFull = function ($div) {
-  $div.each(function() {
-    if ($(this).data('cohort-full')) {
-      $(this).addClass('closed');
+APP.Multiform.prototype.addCohortButtonListeners = function ($div) {
+  var self = this;
+  //listeners on clickable boxes
+  $('.open').click(function () {
+    // Set cohort to selected
+    $(this).parent().toggleClass('selected');
+    if ($(this).text() == 'Add Class') {
+      $(this).text('SELECTED!');
     } else {
-      $(this).addClass('open');
-      $(this).append('<button href="#" class="btn btn-primary add-course">Add to Cart</button>');
+      $(this).text('Add Class');
+    }
+    $(this).toggleClass('btn-primary').toggleClass('btn-info');
+
+    //enable or disable clicking on enroll button
+    if ($('.selected').size() > 0) {
+      $('#enrollButton').removeAttr('disabled');
+    } else {
+      $('#enrollButton').attr('disabled', 'disabled');
     }
   });
 };
 
-APP.Multiform.prototype.addListeners = function ($div) {
-  var $open = $div.filter('.open');
-  $open.find('.add-course').addClass('clickable');
-  var self = this;
-  //listeners on clickable boxes
-  $('.clickable').click(function () {
-    console.log("added "+$(this).parent().data('cohort-id'));
-    $(this).parent().toggleClass('selected').toggleClass('open');
-    //enable or disable enroll button
-    if ($('.selected').size() > 0) {
-      $('#enroll').removeAttr('disabled');
-    } else {
-      $('#enroll').attr('disabled', 'disabled');
-    }
-  });
+APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
+  $('#enrollButton').click(function (e) {
+    e.preventDefault();
+    var dataResponse = {packages: []};
+    var packageId, cohortId;
 
-  //listener on enroll button
-  $('#enroll').click(function (event) {
-    event.preventDefault();
-    var packages = [];
-    $div.filter('.selected').each(function () {
-      // debugger;
-      var sel_cohort_id = $(this).data('cohort-id');
-      var sel_package_id = $(this).parent().data('package-id');
-      // packages.push(sel_package_id: cohort_ids);
+    // Constructr data response from clicked buttons
+    $selected = $('.selected');
+    $selected.each(function(_, selectedEl){
+      var selectedEl = $(selectedEl);
+      packageId = selectedEl.parent().data('package-id');
+      cohortId = selectedEl.data('cohort-id');
 
-      self.cohort_ids.push(sel_cohort_id);
-      self.package_ids.push(sel_package_id);
+      var targetPackage = dataResponse.packages.filter(function(pack) {
+        return pack.id === packageId;
+      });
+
+      if (targetPackage[0] != undefined) {
+        targetPackage[0].cohort_ids.push(cohortId)
+      } else {
+        dataResponse.packages.push({id: packageId, cohort_ids: [cohortId]})
+      }
+
+      packageId = null, cohortId =[];
     });
-    // window.location.href='http://localhost:3000/customers/new?cohort_ids[]='+self.cohort_ids+'&package_ids[]='+self.package_ids;
-    // $.ajax({
-    //   data: {
-    //     packages: [
-
-    //     ]
-    //   }
-    // })
+    console.log(dataResponse);
   });
 };
 
 APP.Multiform.prototype.init = function () {
   var $div = this.$el();
-  this.checkFull($div);
-  this.addListeners($div);
+  this.addCohortButtonListeners($div);
+  this.addEnrollButtonListener($div);
 };
 
 $(function () {

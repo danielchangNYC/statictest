@@ -20,9 +20,8 @@
       <div id="packages" class="row">
 
       </div>
-      <a href="#" id="enroll">enroll now!</a>
+      <button id="enrollButton" class="btn btn-primary" disabled>enroll now!</button>
     </div>
-
     <!-- Cohort Template -->
     <script id="packageTemplate" type="text/x-handlebars-template">
         {{#packages}}
@@ -31,11 +30,14 @@
           {{#cohorts_by_course}}
             <h2>{{name}}</h2>
             {{#cohorts}}
-              <h3>{{name}}</h3>        
-              <ul>
-                <li>Max: {{max_enrollments}}</li>
-                <li>{{full}}</li>
-              </ul>
+              <div class="cohort" data-cohort-id="{{id}}">
+                <h3>{{name}}</h3>
+                <ul>
+                  <li>Max: {{max_enrollments}}</li>
+                  <li>{{full}}</li>
+                </ul>
+                {{addCohortButton this}}
+              </div>
             {{/cohorts}}
           {{/cohorts_by_course}}
         </div>
@@ -43,7 +45,7 @@
     </script>
 
     <!-- Req to //Enrollments -->
-    <script src="http://50df9cfc.ngrok.com/api/packages/location/new-york.json?callback=displayPackages">
+    <script src="http://5bac69d4.ngrok.com/api/packages/location/new-york.json?callback=displayPackages">
     </script>
 
   </body>
