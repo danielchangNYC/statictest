@@ -1,4 +1,5 @@
 function displayPackages(responsePackages){
+  console.log(responsePackages)
   var source = $("#packageTemplate").html();
   var template = Handlebars.compile(source);
   var output = template(responsePackages);
