@@ -28,6 +28,8 @@
         <div class="col-sm-12 package" data-package-id="{{id}}">
           <h1>{{name}}</h1>
           <p>${{price_in_dollars}}</p>
+          <p>{{length_of_package_in_days}} days of class</p>
+          <p>{{dates_covered}}</p>
           <p>{{description}}</p>
           {{#cohorts_by_course}}
             <h3>{{name}}</h3>
@@ -48,7 +50,7 @@
     </script>
 
     <!-- Req to //Enrollments -->
-    <script src="http://72ef7248.ngrok.com/api/packages/location/nyc.json?callback=displayPackages">
+    <script src="http://2b446cc0.ngrok.com/api/packages/location/nyc.json?callback=displayPackages">
     </script>
 
   </body>
