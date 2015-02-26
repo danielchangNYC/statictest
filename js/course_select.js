@@ -32,6 +32,17 @@ APP.Multiform.prototype.addCohortButtonListeners = function ($div) {
 APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
   $('#enrollButton').click(function (e) {
     e.preventDefault();
+
+    // PAYLOAD
+    // {
+    //   packages: [
+    //     {
+    //       id: 8,
+    //       cohort_ids: [1, 3]
+    //     }
+    //   ]
+    // }
+
     var dataResponse = {packages: []};
     var packageId, cohortId;
 
@@ -55,6 +66,7 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
       packageId = null, cohortId =[];
     });
     // send dataResponse to //enroll
+
     $.ajax({
         // url should always point to localhost to avoid unexpected behavior
         url: 'http://localhost:3000/api/carts',
