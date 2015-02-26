@@ -56,7 +56,8 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
     });
     // send dataResponse to //enroll
     $.ajax({
-        url: 'http://2b446cc0.ngrok.com/api/carts',
+        // url should always point to localhost to avoid unexpected behavior
+        url: 'http://localhost:3000/api/carts',
         type: 'POST',
         contentType: 'application/json',
         crossDomain: true,
