@@ -65,11 +65,10 @@ APP.Multiform.prototype.addEnrollButtonListener = function ($div) {
 
       packageId = null, cohortId =[];
     });
-    // send dataResponse to //enroll
 
+    // send dataResponse to //enroll
     $.ajax({
-        // url should always point to localhost to avoid unexpected behavior
-        url: 'http://localhost:3000/api/carts',
+        url: 'http://qa.enroll.flatironschool.com/api/carts',
         type: 'POST',
         contentType: 'application/json',
         crossDomain: true,
